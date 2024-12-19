@@ -22,7 +22,6 @@ We were tasked with designing and creating a development skeleton for future Bio
 - Bcrypt
 - Prisma 5.15.0
 
-
 ## Getting Started
 
 ### Ensure you have the following installed: 
