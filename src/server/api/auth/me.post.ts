@@ -1,4 +1,4 @@
-import { checkJwtToken, createJwtToken } from "~/jwt";
+import { checkJwtToken, createJwtToken } from "../../../jwt";
 import prisma from '../../../database/db';
 
 // Define the event handler for the POST request
