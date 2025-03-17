@@ -3,29 +3,22 @@
     <NuxtLoadingIndicator />
     <NuxtLayout>
       <NuxtPage />
-  </NuxtLayout>
+    </NuxtLayout>
   </div>
 </template>
 
 <style>
-/* 
-nav {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-content: center ;
-}
-
-nav a {
-  padding: 0.5rem 1rem;
-  background-color: #4CAF50;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-nav a:hover {
-  background-color: #45a049;
-} */
-
+  /* Add small left and right margins application-wide */
+  div#__nuxt {
+    margin: 0 20px;
+  }
 </style>
+
+<script lang="ts" setup>
+  /* Ensure a consistent body app look */
+  useHead({
+    bodyAttrs: {
+      class: 'min-h-screen bg-gradient-to-t from-green-300 to-50%',
+    }
+  });
+</script>

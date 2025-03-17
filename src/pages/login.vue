@@ -70,9 +70,10 @@ const login = async () => {
       }),
     });
 
-    // console.log(useCookie('token'));
-    console.log(data);
-    console.log(data.name);
+    // TODO: In the future it would be good to move this type of log message to the debug level, but
+    //   at the current setup, the verbose Vue / Nuxt logging makes it very hard to use the console
+    //   in 'Verbose Level' because of the high level of chatter. 
+    console.log('Received response from login API:', data);
     if (data.success) {
 
       //Set cookies

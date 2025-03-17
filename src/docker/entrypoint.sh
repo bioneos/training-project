@@ -1,8 +1,5 @@
 #!/bin/sh
 
-#Enable git usage in the container
-git config --global --add safe.directory /app
-
 #Install Dependencies
 npm install
 
@@ -13,4 +10,3 @@ npx prisma migrate dev
 npm run dev
 
 
-git restore .nuxt/.gitkeep

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { defineEventHandler, readBody } from 'h3';
 import prisma from '../../../database/db';
-import { createJwtToken } from '~/jwt';
+import { createJwtToken } from '../../../jwt';
 
 export default defineEventHandler(async (event) => {
 
