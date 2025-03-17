@@ -1,6 +1,6 @@
 # Bio::Neos Development Skeleton
 
-## Project Overview [v0.1.0]
+## Project Overview
 We were tasked with designing and creating a development skeleton for future Bio::Neos interns to experiment with and build on. Given several options for the framework, we chose Nuxt.js and Vue due to their aesthetic appeal, strong documentation, and supportive community. Our primary goal was to develop an application with some loose ends to give future developers footholds to make it their own and gain valuable learning experiences. Additional goals included experimenting with new technologies, gaining a better understanding of the web development process, and creating a project that could serve as a showcase of our work.
 
 ### Project Goals and Uses
