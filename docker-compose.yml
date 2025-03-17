@@ -1,14 +1,11 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
-      dockerfile: src/docker/Dockerfile
+      dockerfile: ./src/docker/Dockerfile
     ports:
       - "127.0.0.1:${APP_PORT}:${APP_PORT}"
     volumes:
-      # - .:/app
       - type: bind
         source: .
         target: /app
@@ -29,8 +26,8 @@ services:
 
   db:
     build:
-      context: .
-      dockerfile: src/docker/Dockerfile.db
+      context: src
+      dockerfile: ./docker/Dockerfile.db
     ports:
       - "127.0.0.1:${DB_PORT}:${DB_PORT}"
     environment:
