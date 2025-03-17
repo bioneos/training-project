@@ -17,9 +17,7 @@ export default defineNuxtConfig({
 
   hooks: {
     'build:done': () => {
-      const { execSync } = require('child_process');
-      execSync('git restore .nuxt/.gitkeep');
-      execSync('git restore node_modules/.gitkeep');
+      // Add post-build hooks here (IF needed)
     }
   },
 
