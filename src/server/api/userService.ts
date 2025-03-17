@@ -1,7 +1,7 @@
 import { readBody, parseCookies, H3Event } from 'h3';
 import bcrypt from 'bcrypt';
 import prisma from '../../database/db';
-import { createJwtToken, extractUserIdFromToken } from '~/jwt';
+import { createJwtToken, extractUserIdFromToken } from '../../jwt';
 
 export async function changeDisplayName(event: H3Event) {
     const body = await readBody(event);

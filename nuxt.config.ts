@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  telemetry: false,
   devtools: { enabled: true },
   modules: ["@nuxt/ui"],
   devServer: {
@@ -17,9 +18,7 @@ export default defineNuxtConfig({
 
   hooks: {
     'build:done': () => {
-      const { execSync } = require('child_process');
-      execSync('git restore .nuxt/.gitkeep');
-      execSync('git restore node_modules/.gitkeep');
+      // Add post-build hooks here (IF needed)
     }
   },
 
