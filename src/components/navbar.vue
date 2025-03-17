@@ -19,7 +19,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { useCookie } from '#app'; // Ensure you import useCookie
+//import { useCookie } from '#app'; // Ensure you import useCookie
 import { computed } from 'vue';
 
 const router = useRouter();
@@ -28,6 +28,8 @@ const navigate = (path) => {
   router.push(path);
 };
 
+// FIXME: Not sure if my commenting above broke this... Also need to review how to
+//   get to this route as I think it might not be accessible / correct?
 const me = async () => {
   const token = useCookie('token').value || "";
   console.log('me: Token:', token); // Log to ensure token is retrieved
