@@ -119,7 +119,6 @@
         </UCard>
       </template>
     </UTabs>
-    <body class="min-h-screen bg-gradient-to-t from-green-300 to-50% opacity-55"></body>
   </div>
 </template>
 
@@ -266,10 +265,6 @@ async function onDeleteAccount() {
 </script>
 
 <style>
-div {
-  margin-left: 4px;
-  margin-right: 4px;
-}
 [role=tab] {
   visibility: visible;
 }
