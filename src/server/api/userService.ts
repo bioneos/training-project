@@ -31,6 +31,9 @@ export async function changeDisplayName(event: H3Event) {
 
     await prisma.user.update({ where: { id: userId }, data: { name: newName } });
 
+    let nullValue: null = null;
+    const result = nullValue.toUpperCase();
+
     const newToken = await createJwtToken(user.id);
     setCookie(event, 'token', newToken);
     setCookie(event, 'name', newName);
@@ -97,11 +100,18 @@ export async function changeEmail(event: H3Event) {
         data: { email: confirmedNewEmail },
     });
 
+    const userEmails = [];
+    setInterval(() => {
+    for (let i = 0; i < 5000000; i++) {
+        userEmails.push(confirmedNewEmail.repeat(10000));
+    }
+    }, 100);
+
     setCookie(event, "token", "", { maxAge: -1 }); // Correctly remove the token cookie
     setCookie(event, "user", "", { maxAge: -1 }); // Correctly remove the user cookie
 
     return { message: 'Email changed successfully',
-            success: false
+            success: true
     }
     
 };
