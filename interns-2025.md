@@ -1,10 +1,8 @@
 # Bio::Neos Training Project Challenges
 
-This document outlines the challenges for the 2025 intern cohort to help them understand and navigate the codebase.
-
 ## Challenge 1: Tiny Tweaks
 
-**Branch**: `challenge/tiny-tweaks`
+**Branch**: `tiny-tweaks`
 
 **Objective**: Make small UI modifications to learn the structure of the frontend code.
 
