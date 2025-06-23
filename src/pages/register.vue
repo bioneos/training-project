@@ -39,6 +39,7 @@ definePageMeta({
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { consola } from "consola"
+import * as Sentry from "@sentry/nuxt";
 
 //Define the form and error variables
 const name = ref('');
@@ -59,22 +60,17 @@ const register = async () => {
         password: password.value,
         confirmPassword: confirmPassword.value
       })
-    }).then((data: any)=>{ 
+    }).then((data: any) => { 
       if (data.success) {
-
         router.push('/login');
-      
       } else {
-        
         registerError.value = data.message;
-      
       }
-      }).catch((error: any)=>{
-        
-        registerError.value = error.statusMessage;
-        
-      });
-    }
+    }).catch((error: any) => {
+      registerError.value = error.statusMessage;
+      Sentry.captureException(error);
+    });
+  }
 </script>
 
 <style>

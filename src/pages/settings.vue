@@ -16,12 +16,13 @@
           <UFormGroup label="Display Name" name="newName" class="mb-3">
             <UInput v-model="nameForm.newName" :placeholder="name"/>
           </UFormGroup>
+          <div v-if="nameError" style="color: red; font-weight: bold;">{{ nameError }}</div>
 
           <template #footer>
             <UButton type="submit" color="black">
               Save Name
             </UButton>
-            <div v-if="nameError" style="color: red; font-weight: bold;">{{ nameError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -47,12 +48,13 @@
           <UFormGroup label="Confirm New Email" name="confirmNewEmail" required>
             <UInput v-model="emailForm.confirmedNewEmail" type="email" required />
           </UFormGroup>
+          <div v-if="emailError" style="color: red; font-weight: bold;">{{ emailError }}</div>
 
           <template #footer>
             <UButton type="submit" color="black">
               Save Email
             </UButton>
-            <div v-if="emailError" style="color: red; font-weight: bold;">{{ emailError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -78,12 +80,13 @@
           <UFormGroup label="Confirm New Password" name="confirmNewPassword" required>
             <UInput v-model="passwordForm.confirmedNewPassword" type="password" required />
           </UFormGroup>
+          <div v-if="passwordError" style="color: red; font-weight: bold;">{{ passwordError }}</div>
 
           <template #footer>
             <UButton type="submit" color="black">
               Save password
             </UButton>
-            <div v-if="passwordError" style="color: red; font-weight: bold;">{{ passwordError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -109,12 +112,13 @@
           <UFormGroup label="Confirm Password" name="confirmPassword" required>
             <UInput v-model="deletionForm.confirmedPassword" type="password" required />
           </UFormGroup>
+          <div v-if="deletionError" style="color: red; font-weight: bold;">{{ deletionError }}</div>
 
           <template #footer>
             <UButton type="submit" color="red">
               Delete Account
             </UButton>
-            <div v-if="deletionError" style="color: red; font-weight: bold;">{{ deletionError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -125,7 +129,8 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { consola } from "consola"
+import { consola } from "consola";
+import * as Sentry from "@sentry/nuxt";
 
 definePageMeta({
   layout: 'default',

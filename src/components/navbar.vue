@@ -1,10 +1,10 @@
 <template>
   <nav>
-    <ul class="flex items-center rounded-full h-14 border-dotted border-2 border-gray-500 justify-between">
-      <li><a href="/welcome" @click.prevent="navigate('/welcome')">Home</a></li>
-      <li><a href="/settings" @click.prevent="navigate('/settings')">Settings</a></li>
-      <li><a href="https://github.com/bioneos/training-project/tree/main" target="_blank">Repo</a></li>
-      <li><a href="#" @click.prevent="logout">Logout</a></li>
+    <ul class="flex items-center rounded-full h-16 border-dotted border-2 border-gray-500 justify-between">
+      <li><a class="rounded-full" href="/welcome" @click.prevent="navigate('/welcome')">Home</a></li>
+      <li><a class="rounded-full" href="/settings" @click.prevent="navigate('/settings')">Settings</a></li>
+      <li><a class="rounded-full" href="https://github.com/bioneos/training-project/tree/main" target="_blank">Repo</a></li>
+      <li><a class="rounded-full" href="#" @click.prevent="logout">Logout</a></li>
       <li>
         <ClientOnly>
           <UButton block
@@ -18,12 +18,14 @@
       </li>
     </ul>
   </nav>
+  <UDivider :avatar="{ src: 'https://avatars.githubusercontent.com/u/9009142?s=200&v=4' }" />
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
 //import { useCookie } from '#app'; // Ensure you import useCookie
 import { computed } from 'vue';
+import * as Sentry from "@sentry/nuxt";
 
 const router = useRouter();
 
@@ -44,7 +46,7 @@ const me = async () => {
   }).then((data) => { 
     return data;
   }).catch((error) => {
-    console.log(error);
+    Sentry.captureException(error);
   });
 };
 
@@ -55,7 +57,7 @@ const logout = async () => {
   }).then((data) => {
     return data;
   }).catch((error) => {
-    console.log(error);
+    Sentry.captureException(error);
   });
 
   if (response && response.success) {
