@@ -6,7 +6,6 @@ import { createJwtToken } from '../../../jwt';
 export default defineEventHandler(async (event) => {
 
   console.log('Request received');
-  // throw createError({ statusCode: 500, statusMessage: "Internal server error" })
 
   if (event.req.method !== 'POST') {
     throw createError({ statusCode: 405, statusMessage: 'Method not allowed' });
@@ -35,36 +34,36 @@ export default defineEventHandler(async (event) => {
    });
    console.log('User found:', user);
 
-  if(!user){
+ if(user){
+    const match = await bcrypt.compare(password, user.password);
+
+    if(match){
+       const token = await createJwtToken(user.id); // Pass user ID to createJwtToken
+
+       setCookie(event, "token", token); // Corrected to set the token in the cookie
+       console.log('Token set:', token);
+       
+       // Destructure the user object to exclude the password property
+       const { password, ...userWithoutPassword } = user;
+       
+       // Store encrypted user data in cookie without the password
+       setCookie(event, "user", JSON.stringify(userWithoutPassword));
+       setCookie(event, "id", JSON.stringify(user.id));
+       console.log('User data stored in cookie:', userWithoutPassword);
+       console.log('User ID stored in cookie:', user.id);
+
+       prisma.$disconnect();
+
+       // Prepare user object for response without directly mutating the original user object
+       const responseUser = { ...userWithoutPassword, token: token, success: true };
+      
+       console.log('User logged in:', responseUser);
+       return responseUser;
+    } else {
+      throw createError({ statusCode: 401, statusMessage: 'Invalid password' });
+    }
+ } else {
     prisma.$disconnect();
     throw createError({ statusCode: 404, statusMessage: 'User not found' });
-  }
-
-  const match = await bcrypt.compare(password, user.password);
-
-  if(!match) {
-    throw createError({ statusCode: 401, statusMessage: 'Invalid password' });
-  }
-
-  const token = await createJwtToken(user.id); // Pass user ID to createJwtToken
-
-  setCookie(event, "token", token); // Corrected to set the token in the cookie
-  console.log('Token set:', token);
-  
-  // Destructure the user object to exclude the password property
-  const { userPassword, ...userWithoutPassword } = user;
-  
-  // Store encrypted user data in cookie without the password
-  setCookie(event, "user", JSON.stringify(userWithoutPassword));
-  setCookie(event, "id", JSON.stringify(user.id));
-  console.log('User data stored in cookie:', userWithoutPassword);
-  console.log('User ID stored in cookie:', user.id);
-
-  prisma.$disconnect();
-
-  // Prepare user object for response without directly mutating the original user object
-  const responseUser = { ...userWithoutPassword, token: token, success: true };
-
-  console.log('User logged in:', responseUser);
-  return responseUser;
+ }
 });
