@@ -14,12 +14,12 @@
           </template>
 
           <UFormGroup label="Display Name" name="newName" class="mb-3">
-            <UInput v-model="nameForm.newName" :placeholder="name"/>
+            <UInput v-model="nameForm.newName" :placeholder="name" required/>
           </UFormGroup>
           <div v-if="nameError" style="color: red; font-weight: bold;">{{ nameError }}</div>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save Name
             </UButton>
             
@@ -51,7 +51,7 @@
           <div v-if="emailError" style="color: red; font-weight: bold;">{{ emailError }}</div>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save Email
             </UButton>
             
@@ -83,7 +83,7 @@
           <div v-if="passwordError" style="color: red; font-weight: bold;">{{ passwordError }}</div>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save password
             </UButton>
             
@@ -190,8 +190,6 @@ async function onSubmitName() {
     // Set the error message for the "Name" tab only
     nameError.value = error.statusMessage;
   }
-
-  
 }
 
 async function onSubmitEmail() {
@@ -269,7 +267,7 @@ async function onDeleteAccount() {
 
 </script>
 
-<style>
+<style scoped>
 [role=tab] {
   visibility: visible;
 }
@@ -282,4 +280,15 @@ async function onDeleteAccount() {
 *, ::before, ::after {
   box-sizing:inherit;
 }
+
+button[name="form-submit-button"] {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+button[name="form-submit-button"]:hover {
+  color: black;
+}
+
+
 </style>

@@ -6,6 +6,7 @@ import { createJwtToken } from '../../../jwt';
 export default defineEventHandler(async (event) => {
 
   console.log('Request received');
+  // throw createError({ statusCode: 500, statusMessage: "Internal server error" })
 
   if (event.req.method !== 'POST') {
     throw createError({ statusCode: 405, statusMessage: 'Method not allowed' });
