@@ -7,13 +7,15 @@
                 <nuxt-link to="/register">Register</nuxt-link>
                 <nuxt-link to="/login">Login</nuxt-link>
                 <div class="flex items-center justify-end flex-shrink-0 space-x-2">
-                  <UButton block
-                    :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-                    variant="ghost"
-                    aria-label="Theme"
-                    @click="isDark = !isDark"
-                    class="theme-button"
-                  />
+                  <ClientOnly>
+                    <UButton block
+                      :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+                      variant="ghost"
+                      aria-label="Theme"
+                      @click="isDark = !isDark"
+                      class="theme-button"
+                    />
+                  </ClientOnly>
                 </div>
             </nav>
         </div>
@@ -31,6 +33,8 @@
   </template>
 
   <script setup lang="ts">
+  import { ref, computed } from 'vue';
+
   const colorMode = useColorMode();
   const isDark = computed({
     get() {

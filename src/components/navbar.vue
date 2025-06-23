@@ -5,14 +5,17 @@
       <li><a href="/settings" @click.prevent="navigate('/settings')">Settings</a></li>
       <li><a href="https://github.com/bioneos/training-project/tree/main" target="_blank">Repo</a></li>
       <li><a href="#" @click.prevent="logout">Logout</a></li>
-      <li><UButton block
-                    :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-                    variant="ghost"
-                    aria-label="Theme"
-                    @click="isDark = !isDark"
-                    class="theme-button"
-                  />
-        </li>
+      <li>
+        <ClientOnly>
+          <UButton block
+                  :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+                  variant="ghost"
+                  aria-label="Theme"
+                  @click="isDark = !isDark"
+                  class="theme-button"
+                />
+        </ClientOnly>
+      </li>
     </ul>
   </nav>
 </template>
