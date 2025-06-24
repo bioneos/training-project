@@ -28,6 +28,17 @@ Sentry.init({
     return event;
   },
 
+  // This will filter some log trace that are not necessary
+  beforeBreadcrumb(breadcrumb: any) {
+    const deniedBreadcrumbType = ['console'];
+
+    if (deniedBreadcrumbType.indexOf(breadcrumb.category) !== -1) {
+      return null
+    } else {
+      return breadcrumb
+    }
+  },
+
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control
   tracesSampleRate: 1.0,
