@@ -6,6 +6,8 @@ Sentry.init({
   environment: "development",
   // This will run before sending any report to Sentry.io
   beforeSend(event: Sentry.Event) {
+    event.transaction = 'Client Fetch Error';
+
     const acceptedStatusCodeList = [
       204, 205, 206, 208, 226,
       305, 307, 308,
