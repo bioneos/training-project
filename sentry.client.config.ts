@@ -7,7 +7,6 @@ Sentry.init({
 
   // This will run just before sending any report to Sentry.io
   beforeSend(event: Sentry.Event) {
-    event.transaction = 'Client Fetch Error';
     const deniedStatusCodeList = [
       100, 101, 102, 103,
       200, 201, 202, 203,
