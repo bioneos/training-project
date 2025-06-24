@@ -25,8 +25,9 @@ APP_PORT=
 # The port on which the database container will run
 DB_PORT=
 
-# The Sentry Public DSN for reporting events to Sentry.io
-SENTRY_DSN_PUBLIC=
+# The public keys of the Sentry portal
+SENTRY_DSN_CLIENT=
+SENTRY_DSN_API=
 
 # Note:
 # 1. The JSON Web Token (JWT_SECRET) is used for authentication and should be a secure, secret key.

@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/nuxt";
  
 Sentry.init({
-  dsn: useRuntimeConfig().public.sentry.dsn,
+  dsn: useRuntimeConfig().public.sentry.dsnApi,
   environment: "development",
   beforeSend(event: Sentry.Event) {
     event.transaction = "API Error";

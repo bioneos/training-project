@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     jwtSecret: process.env.JWT_SECRET,
     public: {
       sentry: {
-        dsn: process.env.SENTRY_DSN_PUBLIC
+        dsnClient: process.env.SENTRY_DSN_CLIENT,
+        dsnApi: process.env.SENTRY_DSN_API
       }
     }
   },
