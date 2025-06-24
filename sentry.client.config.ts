@@ -4,21 +4,20 @@ Sentry.init({
   // If set up, you can use your runtime config here
   dsn: useRuntimeConfig().public.sentry.dsnClient,
   environment: "development",
-  // This will run before sending any report to Sentry.io
+
+  // This will run just before sending any report to Sentry.io
   beforeSend(event: Sentry.Event) {
     event.transaction = 'Client Fetch Error';
-
-    const acceptedStatusCodeList = [
-      204, 205, 206, 208, 226,
-      305, 307, 308,
-      400, 405, 406, 407, 408, 409, 410, 412, 413, 415, 416, 417,
-      421, 422, 423, 424, 425, 428, 429, 431, 451,
-      500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511
+    const deniedStatusCodeList = [
+      100, 101, 102, 103,
+      200, 201, 202, 203,
+      300, 301, 302, 303, 304,
+      401, 402, 403, 404
     ];
     const statusCode = event.breadcrumbs.slice(-1)[0].data.status_code;
 
     if (statusCode) {
-      if (acceptedStatusCodeList.indexOf(statusCode) !== -1) {
+      if (deniedStatusCodeList.indexOf(statusCode) === -1) {
         return event; 
       } else {
         return null;
@@ -32,10 +31,10 @@ Sentry.init({
   beforeBreadcrumb(breadcrumb: any) {
     const deniedBreadcrumbType = ['console'];
 
-    if (deniedBreadcrumbType.indexOf(breadcrumb.category) !== -1) {
-      return null
-    } else {
+    if (deniedBreadcrumbType.indexOf(breadcrumb.category) === -1) {
       return breadcrumb
+    } else {
+      return null
     }
   },
 
