@@ -189,6 +189,7 @@ async function onSubmitName() {
   } catch (error: any) {
     // Set the error message for the "Name" tab only
     nameError.value = error.statusMessage;
+    Sentry.captureException(error);
   }
 }
 
@@ -215,6 +216,7 @@ async function onSubmitEmail() {
 
   } catch (error: any) {
     emailError.value = error.statusMessage;
+    Sentry.captureException(error);
   }
 }
 
@@ -240,6 +242,7 @@ async function onSubmitPassword() {
     
   } catch (error: any) {
     passwordError.value = error.statusMessage;
+    Sentry.captureException(error);
   }
 }
 
@@ -262,6 +265,7 @@ async function onDeleteAccount() {
 
   } catch (error: any) {
     deletionError.value = error.statusMessage;
+    Sentry.captureException(error);
   }
 }
 
