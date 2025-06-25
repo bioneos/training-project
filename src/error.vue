@@ -18,7 +18,7 @@
         </nav>
       </div>
     </header>
-    <UDivider :avatar="{ src: 'https://avatars.githubusercontent.com/u/9009142?s=200&v=4' }" />
+    <UDivider :avatar="{ src: '/img/logo-sq.png' }" />
   </div>
   <div class="flex justify-center items-center mt-10">
     <div class="grid grid-flow-row justify-items-center">
