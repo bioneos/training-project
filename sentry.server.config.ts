@@ -2,7 +2,7 @@ import * as Sentry from "@sentry/nuxt";
  
 Sentry.init({
   dsn: useRuntimeConfig().public.sentry.dsnApi,
-  environment: process.env.ENV,
+  environment: useRuntimeConfig().public.sentry.environment.toString(),
 
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control

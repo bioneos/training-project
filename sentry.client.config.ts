@@ -3,9 +3,14 @@ import * as Sentry from "@sentry/nuxt";
 Sentry.init({
   // If set up, you can use your runtime config here
   dsn: useRuntimeConfig().public.sentry.dsnClient,
-  environment: process.env.ENV,
+  environment: useRuntimeConfig().public.sentry.environment.toString(),
 
   // This will run just before sending any report to Sentry.io
+  // Notes on these denied status code:
+  //   100-103: these are informational code
+  //   200-203: these are OK status code, and request process are healthy
+  //   300-304: these are route redirected status code
+  //   401-404: these are resource code
   beforeSend(event: Sentry.Event) {
     const deniedStatusCodeList = [
       100, 101, 102, 103,

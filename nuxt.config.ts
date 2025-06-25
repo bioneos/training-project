@@ -19,7 +19,8 @@ export default defineNuxtConfig({
     public: {
       sentry: {
         dsnClient: process.env.SENTRY_DSN_CLIENT,
-        dsnApi: process.env.SENTRY_DSN_API
+        dsnApi: process.env.SENTRY_DSN_API,
+        environment: process.env.ENV,
       }
     }
   },
