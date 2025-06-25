@@ -1,3 +1,6 @@
+# The current environment setting of this application (development/production) (Required)
+ENV=
+
 # MySQL database credentials (All required)
 # The username for the MYSQL DATABASE (e.g., root_user)
 # Used to connect to the database directly 
@@ -25,9 +28,15 @@ APP_PORT=
 # The port on which the database container will run
 DB_PORT=
 
-# The public keys of the Sentry portal
+# The public keys of the Sentry portal. (Can be omitted if do not want to report)
 SENTRY_DSN_CLIENT=
 SENTRY_DSN_API=
+
+# The organization slug on Sentry (Required)
+SENTRY_ORG=
+
+# The client project name on Sentry (Required)
+SENTRY_CLIENT_PROJECT=
 
 # Note:
 # 1. The JSON Web Token (JWT_SECRET) is used for authentication and should be a secure, secret key.
@@ -35,3 +44,9 @@ SENTRY_DSN_API=
 #    Use meaningful, descriptive names instead.
 # 3. Ensure MYSQL_USER, MYSQL_ROOT_PASSWORD and MYSQL_DATABASE are correctly set
 #    and match the corresponding values in your application configuration.
+# 4. The DSN for the Sentry portal can be obtained in the Sentry.io corresponding project settings.
+#    SENTRY_DSN_CLIENT is for event reportings that come from client side, 
+#    SENTRY_DSN_API is for event reportings that come from the server side.
+#    It is possible to set both variables to point at the same DSN for combined client and server reportings.
+# 5. The organization slug can be found on Sentry.io organization settings.
+#    The project name is display on the Projects tab on Sentry.io.
