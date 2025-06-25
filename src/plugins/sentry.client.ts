@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   // Add user context from cookies
   const userId = useCookie('id').value;
   const email = useCookie('email').value;
-  if (userId) {
+  if (userId || email) {
     Sentry.setUser({ id: userId, email });
   }
 

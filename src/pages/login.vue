@@ -61,6 +61,7 @@ const router = useRouter();
 
 
 const login = async () => {
+  Sentry.setUser({ email: email.value });// Sets user email immediately on client-side form submission.
   try {
     const data = await $fetch('/api/auth/login', {
       method: 'POST',
