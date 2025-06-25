@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/nuxt";
 Sentry.init({
   // If set up, you can use your runtime config here
   dsn: useRuntimeConfig().public.sentry.dsnClient,
-  environment: "development",
+  environment: process.env.ENV,
 
   // This will run just before sending any report to Sentry.io
   beforeSend(event: Sentry.Event) {
