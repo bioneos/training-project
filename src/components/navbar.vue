@@ -57,8 +57,14 @@ const logout = async () => {
   }).then((data) => {
     return data;
   }).catch((error) => {
-    Sentry.captureException(error);
+  Sentry.captureException(error, {
+    extra: {
+      action: 'logout',
+      endpoint: '/api/auth/logout',
+      time: new Date().toISOString()
+    }
   });
+});
 
   if (response && response.success) {
     console.log('Logout successful');
