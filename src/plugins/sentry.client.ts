@@ -20,9 +20,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     if (to.name) {
       Sentry.setTag('route', to.query.toString());
       Sentry.setTag('route', to.path.toString());
-    
-    
-
     }
 
     // Add full route details as additional context 
