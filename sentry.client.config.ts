@@ -10,7 +10,7 @@ Sentry.init({
   //   100-103: these are informational code
   //   200-203: these are OK status code, and request process are healthy
   //   300-304: these are route redirected status code
-  //   401-404: these are resource code
+  //   401-404: these are resource info code
   beforeSend(event: Sentry.Event) {
     const deniedStatusCodeList = [
       100, 101, 102, 103,
@@ -18,28 +18,15 @@ Sentry.init({
       300, 301, 302, 303, 304,
       401, 402, 403, 404
     ];
-    const statusCode = event.breadcrumbs.slice(-1)[0].data.status_code;
 
-    if (statusCode) {
-      if (deniedStatusCodeList.indexOf(statusCode) === -1) {
-        return event; 
-      } else {
-        return null;
-      }
-    }
-
-    return event;
+    return deniedStatusCodeList.indexOf(event.breadcrumbs.slice(-1)[0].data.status_code) === -1 ? event : null;
   },
 
   // This will filter some log trace that are not necessary
   beforeBreadcrumb(breadcrumb: any) {
     const deniedBreadcrumbType = ['console'];
 
-    if (deniedBreadcrumbType.indexOf(breadcrumb.category) === -1) {
-      return breadcrumb
-    } else {
-      return null
-    }
+    return deniedBreadcrumbType.indexOf(breadcrumb.category) === -1 ? breadcrumb : null;
   },
 
   // We recommend adjusting this value in production, or using tracesSampler
