@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/nuxt";
+import packageJson from "./package.json";
 
 Sentry.init({
   // If set up, you can use your runtime config here
@@ -47,3 +48,5 @@ Sentry.init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 });
+
+Sentry.setTag("version", packageJson.version.toString());
