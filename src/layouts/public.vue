@@ -20,7 +20,7 @@
             </nav>
         </div>
     </header>
-    <UDivider :avatar="{ src: 'https://avatars.githubusercontent.com/u/9009142?s=200&v=4' }" />
+    <UDivider :avatar="{ src: '/img/logo-sq.png' }" />
 
   </div>
     <div>
