@@ -38,6 +38,9 @@ SENTRY_ORG=
 # The client project name on Sentry (Required)
 SENTRY_CLIENT_PROJECT=
 
+# Enable/Disable the status code filtering before send (0 for false, 1 for true) (Required)
+SENTRY_IS_FILTER_STATUS=
+
 # Note:
 # 1. The JSON Web Token (JWT_SECRET) is used for authentication and should be a secure, secret key.
 # 2. Avoid using single-digit numbers for database credentials to prevent syntax errors.

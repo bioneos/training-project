@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         dsnClient: process.env.SENTRY_DSN_CLIENT,
         dsnApi: process.env.SENTRY_DSN_API,
         environment: process.env.ENV,
+        isStatusFilter: process.env.SENTRY_IS_FILTER_STATUS,
       }
     }
   },

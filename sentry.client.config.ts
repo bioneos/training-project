@@ -20,6 +20,10 @@ Sentry.init({
       401, 402, 403, 404
     ];
 
+    if (useRuntimeConfig().public.sentry.isStatusFilter !== "1") {
+      return event;
+    }
+
     return deniedStatusCodeList.indexOf(event.breadcrumbs.slice(-1)[0].data.status_code) === -1 ? event : null;
   },
 
