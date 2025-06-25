@@ -30,14 +30,20 @@ export default defineNuxtConfig({
     }
   },
 
+  // This add the client source map of the code to Sentry for stack tracing. 
   sentry: {
     sourceMapsUploadOptions: {
-      org: "test-org-3s",
-      project: "training-project-sz",
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_CLIENT_PROJECT,
     },
   },
 
+  // Sentry enable source map for server by default (hidden)
+  // true: send sourcemap; 
+  // false: do not send sourcemap; 
+  // hidden: send sourcemap but prevent source map reference comments.
   sourcemap: {
+    server: "hidden",
     client: "hidden",
   },
 });
