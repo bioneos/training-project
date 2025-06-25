@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/nuxt";
+import packageJson from "./package.json";
  
 Sentry.init({
   dsn: useRuntimeConfig().public.sentry.dsnApi,
