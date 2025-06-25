@@ -46,9 +46,15 @@ const me = async () => {
   }).then((data) => { 
     return data;
   }).catch((error) => {
-    Sentry.captureException(error);
+  Sentry.captureException(error, {
+    extra: {//give context to generic sentry failure such as seesion issues and token problem or backend
+      action: 'logout',
+      endpoint: '/api/auth/logout',
+      timestamp: new Date().toISOString(),
+      tokenPresent: Boolean(useCookie('token').value),
+    }
   });
-};
+});
 
 const logout = async () => {
   const response = await $fetch('/api/auth/logout', { 
@@ -58,7 +64,7 @@ const logout = async () => {
     return data;
   }).catch((error) => {
   Sentry.captureException(error, {
-    extra: {
+    extra: {//provide more information on route and user
       action: 'logout',
       endpoint: '/api/auth/logout',
       time: new Date().toISOString()
