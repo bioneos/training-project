@@ -18,9 +18,9 @@ export default defineNuxtConfig({
     jwtSecret: process.env.JWT_SECRET,
     public: {
       sentry: {
-        dsnClient: process.env.SENTRY_DSN_CLIENT,
-        dsnApi: process.env.SENTRY_DSN_API,
-        environment: process.env.ENV,
+        dsnClient: process.env.SENTRY_DSN_FRONTEND,
+        dsnApi: process.env.SENTRY_DSN_BACKEND,
+        environment: process.env.SENTRY_ENV,
         isStatusFilter: process.env.SENTRY_IS_FILTER_STATUS,
         breadcrumbFilterList: process.env.SENTRY_LIST_FILTER_BREADCRUMB,
         traceConfig: {

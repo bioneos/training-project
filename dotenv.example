@@ -1,6 +1,3 @@
-# The current environment setting of this application (development/production) (Required)
-ENV=
-
 # MySQL database credentials (All required)
 # The username for the MYSQL DATABASE (e.g., root_user)
 # Used to connect to the database directly 
@@ -28,16 +25,22 @@ APP_PORT=
 # The port on which the database container will run
 DB_PORT=
 
-# The public keys of the Sentry portal. (Can be omitted if do not want to report)
-SENTRY_DSN_CLIENT=
-SENTRY_DSN_API=
+# Below are the configs for Sentry event reporting
+# The environment setting of this application to report to Sentry (development/production) (Omitted for development environment)
+SENTRY_ENV=
 
-# The organization slug on Sentry (Required)
+# The data source name (DSN) of the Sentry projects. (Omitted if do not want to report)
+SENTRY_DSN_BACKEND=
+SENTRY_DSN_FRONTEND=
+
+# The organization slug on Sentry (Required if the DSN are set)
 SENTRY_ORG=
 
-# The client project name on Sentry (Required)
+# The client project name on Sentry (Required if the DSN is set)
 SENTRY_CLIENT_PROJECT=
 
+# These variables below are for the event filtering and sampling, 
+# The implementation is located in the sentry.client.config.ts and sentry.server.config.ts files
 # Enable/Disable the status code filtering before send (true/false) (Omitted for false)
 SENTRY_IS_FILTER_STATUS=
 
