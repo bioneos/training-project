@@ -23,7 +23,7 @@ const defaultTraceRate = () => {
     defaultTraceRate = 0;
   }
 
-  return defaultTraceRate;d
+  return defaultTraceRate;
 }
 
 // Parse error session replay rate
