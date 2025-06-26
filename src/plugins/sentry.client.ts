@@ -18,8 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   // avoid tagging full paths to reduce tag noise
   router.afterEach((to) => {
     if (to.name) {
-      Sentry.setTag('route', to.query.toString());
-      Sentry.setTag('route', to.path.toString());
+      Sentry.setTag('route_path', to.path.toString());
     }
 
     // Add full route details as additional context 
