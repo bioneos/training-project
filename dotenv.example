@@ -43,7 +43,7 @@ SENTRY_IS_FILTER_STATUS=
 
 # Breadcrumbs list to be filtered before send (Omitted if no filtering)
 # Each item is separated by a comma (Ex: console,fetch,ui.click)
-SENTRY_LIST_FILTER_BREADCRUMB=console
+SENTRY_LIST_FILTER_BREADCRUMB=
 
 # The default trace sampling rate (0 <= float <= 1) (Omitted for no monitoring/default to 0)
 SENTRY_DEFAULT_TRACE_RATE=
