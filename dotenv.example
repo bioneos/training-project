@@ -38,8 +38,25 @@ SENTRY_ORG=
 # The client project name on Sentry (Required)
 SENTRY_CLIENT_PROJECT=
 
-# Enable/Disable the status code filtering before send (0 for false, 1 for true) (Required)
+# Enable/Disable the status code filtering before send (true/false) (Omitted for false)
 SENTRY_IS_FILTER_STATUS=
+
+# Breadcrumbs list to be filtered before send (Omitted if no filtering)
+# Each item is separated by a comma (Ex: console,fetch,ui.click)
+SENTRY_LIST_FILTER_BREADCRUMB=console
+
+# The default trace sampling rate (0 <= float <= 1) (Omitted for no monitoring/default to 0)
+SENTRY_DEFAULT_TRACE_RATE=
+
+# The user replay sampling rate (0 <= float <= 1) (Omitted for no monitoring/default to 0)
+# You may want this to be 1.0 while in development and sample at a lower rate in production
+SENTRY_USER_REPLAY_RATE=
+
+# The error replay sampling rate (0 <= float <= 1) (Omitted for no monitoring/default to 0)
+SENTRY_ERROR_REPLAY_RATE=
+
+# Enable/Disable console log debugging for Sentry (true/false) (Omitted for no debugging)
+SENTRY_IS_DEBUG=
 
 # Note:
 # 1. The JSON Web Token (JWT_SECRET) is used for authentication and should be a secure, secret key.
@@ -53,3 +70,4 @@ SENTRY_IS_FILTER_STATUS=
 #    It is possible to set both variables to point at the same DSN for combined client and server reportings.
 # 5. The organization slug can be found on Sentry.io organization settings.
 #    The project name is display on the Projects tab on Sentry.io.
+# 6. The breadcrumb type can be found under Breadcrumb View in Sentry.io

@@ -22,6 +22,15 @@ export default defineNuxtConfig({
         dsnApi: process.env.SENTRY_DSN_API,
         environment: process.env.ENV,
         isStatusFilter: process.env.SENTRY_IS_FILTER_STATUS,
+        breadcrumbFilterList: process.env.SENTRY_LIST_FILTER_BREADCRUMB,
+        traceConfig: {
+          defaultSamplingRate: process.env.SENTRY_DEFAULT_TRACE_RATE,
+        },
+        replaySessionConfig: {
+          userSamplingRate: process.env.SENTRY_USER_REPLAY_RATE,
+          errorSamplingRate: process.env.SENTRY_ERROR_REPLAY_RATE,
+        },
+        isDebugging: process.env.SENTRY_IS_DEBUG,
       }
     }
   },
