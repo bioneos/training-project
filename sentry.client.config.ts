@@ -65,7 +65,9 @@ Sentry.init({
   //   100-103: these are informational code
   //   200-203: these are OK status code, and request process are healthy
   //   300-304: these are route redirected status code
-  //   401-404: these are resource info code
+  //   401-404: these are resource info code 
+  //   (400 is reported because there is a case where the client side receives the input
+  //    but for some error it does not send enough data to the server)
   beforeSend(event: Sentry.Event) {
     const deniedStatusCodeList = [
       100, 101, 102, 103,
@@ -88,17 +90,18 @@ Sentry.init({
   },
 
   // This controls all the trace sampling rate, determined by the env value
-  // tracesSampler: (samplingContext: any) => {
-  //   const { name, attributes, inheritOrSampleWith } = samplingContext;
-  //   const currentEnvironment = useRuntimeConfig().public.sentry.environment.toString();
-  //   const defaultSamplingRate = defaultTraceRate();
+  tracesSampler: (samplingContext: any) => {
+    const { name, attributes, inheritOrSampleWith } = samplingContext;
+    const currentEnvironment = useRuntimeConfig().public.sentry.environment.toString();
+    const defaultSamplingRate = defaultTraceRate();
 
-  //   // Default sampling rate
-  //   return inheritOrSampleWith(defaultSamplingRate);
-  // },
+    // Default sampling rate
+    return inheritOrSampleWith(defaultSamplingRate);
+  },
+
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control
-  tracesSampleRate: 1.0,
+  // tracesSampleRate: 1.0,
 
   // This sets the sample rate of the session replay
   replaysSessionSampleRate: userReplayRate(),
