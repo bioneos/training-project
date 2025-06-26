@@ -1,9 +1,6 @@
 import * as Sentry from "@sentry/nuxt";
 import packageJson from "./package.json";
 
-
-Sentry.setTag("version", packageJson.version.toString());
-
 // Parse default trace rate
 const defaultTraceRate = () => {
   let defaultTraceRate = 0;
@@ -20,6 +17,7 @@ const defaultTraceRate = () => {
 Sentry.init({
   dsn: useRuntimeConfig().public.sentry.dsnApi,
   environment: useRuntimeConfig().public.sentry.environment.toString(),
+  release: packageJson.version.toString(),
 
   // This controls all the trace sampling rate, determined by the env value
   tracesSampler: (samplingContext: any) => {

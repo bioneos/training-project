@@ -52,13 +52,11 @@ const userReplayRate = () => {
   return userReplayRate;
 }
 
-// Set tags for all events
-Sentry.setTag("version", packageJson.version.toString());
-
 // Start initialize
 Sentry.init({
   dsn: useRuntimeConfig().public.sentry.dsnClient,
   environment: useRuntimeConfig().public.sentry.environment.toString(),
+  release: packageJson.version.toString(),
 
   // This will run just before sending any report to Sentry.io
   // Notes on these denied status code:
