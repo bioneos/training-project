@@ -131,6 +131,8 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { consola } from "consola";
 import * as Sentry from "@sentry/nuxt";
+import { useErrorLogger } from '~/composables/useErrorLogger';
+const { reportError }= useErrorLogger();
 
 definePageMeta({
   layout: 'default',
@@ -189,7 +191,7 @@ async function onSubmitName() {
   } catch (error: any) {
     // Set the error message for the "Name" tab only
     nameError.value = error.statusMessage;
-    Sentry.captureException(error);
+    reportError(error,{ section : 'settings/Name'})
   }
 }
 
@@ -216,7 +218,7 @@ async function onSubmitEmail() {
 
   } catch (error: any) {
     emailError.value = error.statusMessage;
-    Sentry.captureException(error);
+    reportError(error, {section: 'settings/email'});
   }
 }
 
@@ -242,7 +244,7 @@ async function onSubmitPassword() {
     
   } catch (error: any) {
     passwordError.value = error.statusMessage;
-    Sentry.captureException(error);
+    reportError(error, {section: 'settings/password'});
   }
 }
 
@@ -265,7 +267,7 @@ async function onDeleteAccount() {
 
   } catch (error: any) {
     deletionError.value = error.statusMessage;
-    Sentry.captureException(error);
+    reportError(error, {section: 'settings/delete'});
   }
 }
 

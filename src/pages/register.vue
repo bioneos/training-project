@@ -40,7 +40,9 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { consola } from "consola"
 import * as Sentry from "@sentry/nuxt";
+import { useErrorLogger } from '~/composables/useErrorLogger';
 
+const {reportError}= useErrorLogger();
 //Define the form and error variables
 const name = ref('');
 const email = ref('');
@@ -68,7 +70,7 @@ const register = async () => {
       }
     }).catch((error: any) => {
       registerError.value = error.statusMessage;
-      Sentry.captureException(error);
+      reportError(error, {section: 'register'})
     });
   }
 </script>

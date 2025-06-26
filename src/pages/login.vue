@@ -47,6 +47,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import * as Sentry from "@sentry/nuxt";
+import { useErrorLogger } from '~/composables/useErrorLogger';
+const { reportError}= useErrorLogger();
 
 definePageMeta({
         layout: 'public',
@@ -89,7 +91,7 @@ const login = async () => {
     } 
   } catch (error: any) {
     loginError.value = error.statusMessage;
-    Sentry.captureException(error);
+    reportError(error, {section: 'login'});
   }
 };
 </script>
