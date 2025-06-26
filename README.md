@@ -159,10 +159,7 @@ To use the Sentry event reporter, please follow these steps:
 2. Create two new projects: one for client and one for server.
 3. Navigate to the project settings and copy the Client ID (DSN) for each project and paste to the local `.env` file.
 4. Also copy the project slug and navigate to organization setting to copy the organization slug and paste those to the local `.env` file.
-5. Make sure that the Sentry SDK is install. Copy this command if you haven't install one:
-
-    ```npm install @sentry/nuxt --save```
-6. Fill out necessary environment values according to the `dotenv.example` file.
+5. Fill out necessary environment values according to the `dotenv.example` file.
 
 When everything is setup correctly, any event that are captured will be present in the [Sentry.io]() dashboard. The event issue dashboard should look something like this:
 
