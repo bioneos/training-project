@@ -47,15 +47,15 @@ const me = async () => {
     return data;
   }).catch((error) => {
   Sentry.captureException(error, {
-    extra: {//give context to generic sentry failure such as seesion issues and token problem or backend
+    extra: {//give context to generic sentry failure such as seesion issues and token
       action: 'logout',
       endpoint: '/api/auth/logout',
       timestamp: new Date().toISOString(),
       tokenPresent: Boolean(useCookie('token').value),
     }
   });
-});
-
+  });
+};
 const logout = async () => {
   const response = await $fetch('/api/auth/logout', { 
     method: "POST",
