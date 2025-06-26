@@ -1,26 +1,31 @@
 <template>
   <nav>
-    <ul class="flex items-center rounded-full h-14 border-dotted border-2 border-gray-500 justify-between">
-      <li><a href="/welcome" @click.prevent="navigate('/welcome')">Home</a></li>
-      <li><a href="/settings" @click.prevent="navigate('/settings')">Settings</a></li>
-      <li><a href="https://github.com/bioneos/training-project/tree/main" target="_blank">Repo</a></li>
-      <li><a href="#" @click.prevent="logout">Logout</a></li>
-      <li><UButton block
-                    :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-                    variant="ghost"
-                    aria-label="Theme"
-                    @click="isDark = !isDark"
-                    class="theme-button"
-                  />
-        </li>
+    <ul class="flex items-center rounded-full h-16 border-dotted border-2 border-gray-500 justify-between">
+      <li><a class="rounded-full" href="/welcome" @click.prevent="navigate('/welcome')">Home</a></li>
+      <li><a class="rounded-full" href="/settings" @click.prevent="navigate('/settings')">Settings</a></li>
+      <li><a class="rounded-full" href="https://github.com/bioneos/training-project/tree/main" target="_blank">Repo</a></li>
+      <li><a class="rounded-full" href="#" @click.prevent="logout">Logout</a></li>
+      <li>
+        <ClientOnly>
+          <UButton block
+                  :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+                  variant="ghost"
+                  aria-label="Theme"
+                  @click="isDark = !isDark"
+                  class="theme-button"
+                />
+        </ClientOnly>
+      </li>
     </ul>
   </nav>
+  <UDivider :avatar="{ src: '/img/logo-sq.png' }" />
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
 //import { useCookie } from '#app'; // Ensure you import useCookie
 import { computed } from 'vue';
+import * as Sentry from "@sentry/nuxt";
 
 const router = useRouter();
 
@@ -41,10 +46,16 @@ const me = async () => {
   }).then((data) => { 
     return data;
   }).catch((error) => {
-    console.log(error);
+  Sentry.captureException(error, {
+    extra: {//give context to generic sentry failure such as seesion issues and token
+      action: 'logout',
+      endpoint: '/api/auth/logout',
+      timestamp: new Date().toISOString(),
+      tokenPresent: Boolean(useCookie('token').value),
+    }
+  });
   });
 };
-
 const logout = async () => {
   const response = await $fetch('/api/auth/logout', { 
     method: "POST",
@@ -52,8 +63,14 @@ const logout = async () => {
   }).then((data) => {
     return data;
   }).catch((error) => {
-    console.log(error);
+  Sentry.captureException(error, {
+    extra: {//provide more information on route and user
+      action: 'logout',
+      endpoint: '/api/auth/logout',
+      time: new Date().toISOString()
+    }
   });
+});
 
   if (response && response.success) {
     console.log('Logout successful');

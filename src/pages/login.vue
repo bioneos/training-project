@@ -46,6 +46,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import * as Sentry from "@sentry/nuxt";
+import { useErrorLogger } from '~/composables/useErrorLogger';
+const { reportError}= useErrorLogger();
 
 definePageMeta({
         layout: 'public',
@@ -60,6 +63,7 @@ const router = useRouter();
 
 
 const login = async () => {
+  Sentry.setUser({ email: email.value });// Sets user email immediately on client-side form submission.
   try {
     const data = await $fetch('/api/auth/login', {
       method: 'POST',
@@ -87,7 +91,7 @@ const login = async () => {
     } 
   } catch (error: any) {
     loginError.value = error.statusMessage;
-    console.log(loginError.value);
+    reportError(error, {section: 'login'});
   }
 };
 </script>

@@ -148,7 +148,22 @@ Changes are handled via API requests, handlers located in server folder
 
 ![Settings page, delete account tab](readme-images/settings3.png)
 
+## Sentry
+This project has been configure to report events to [Sentry.io](https://sentry.io/) to keep track of all events throughout the application life cycles. It is mainly use to report unhandled and handled exceptions, but we can log any events at any point in the app.
 
+You can consult this [Sentry for Nuxt documentation](https://docs.sentry.io/platforms/javascript/guides/nuxt/manual-setup/) for more information and manual setup steps.
+
+To use the Sentry event reporter, please follow these steps:
+
+1. Create an account and organization on [Sentry.io]().
+2. Create two new projects: one for client and one for server.
+3. Navigate to the project settings and copy the Client ID (DSN) for each project and paste to the local `.env` file.
+4. Also copy the project slug and navigate to organization setting to copy the organization slug and paste those to the local `.env` file.
+5. Fill out necessary environment values according to the `dotenv.example` file.
+
+When everything is setup correctly, any event that are captured will be present in the [Sentry.io]() dashboard. The event issue dashboard should look something like this:
+
+![Sentry.io Issue Dashboard](readme-images/sentry-issue.png)
 
 ## Acknowledgements
 - [Nuxt UI official documentation](https://ui.nuxt.com/getting-started)
@@ -158,6 +173,7 @@ Changes are handled via API requests, handlers located in server folder
 - [Getting Started With Nuxt UI by John Komarnicki](https://www.youtube.com/watch?v=SE_ysS_ZXbk&t=1272s)
 - [Tailwind CSS styling help](https://tailwindcss.com/docs/flex-basis)
 - [Consola Logging](https://github.com/unjs/consola)
+- [Sentry for Nuxt documentation](https://docs.sentry.io/platforms/javascript/guides/nuxt/manual-setup/)
 
 ## License
 Distributed under the BSD 2-Clause License. See `LICENSE.md` for more information.

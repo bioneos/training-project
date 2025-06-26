@@ -4,6 +4,7 @@ import prisma from '../../../database/db';
 import { createJwtToken } from '../../../jwt';
 
 export default defineEventHandler(async (event) => {
+  
 
   console.log('Request received');
 
@@ -14,8 +15,12 @@ export default defineEventHandler(async (event) => {
   //Reading the body of the request and splitting it into name, email, and password
   const body = await readBody(event);
   const { email, password } = body;
+  
+  
 
   // Validate presence of email and password
+  setCookie(event, "email", email); 
+  
   if (!email || !password) {
     throw createError({ statusCode: 400, statusMessage: 'Missing email or password' });
   }
@@ -32,6 +37,7 @@ export default defineEventHandler(async (event) => {
       password: true
     }
    });
+   
    console.log('User found:', user);
 
  if(user){
