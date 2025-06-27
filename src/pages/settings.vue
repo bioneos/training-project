@@ -14,14 +14,15 @@
           </template>
 
           <UFormGroup label="Display Name" name="newName" class="mb-3">
-            <UInput v-model="nameForm.newName" :placeholder="name"/>
+            <UInput v-model="nameForm.newName" :placeholder="name" required/>
           </UFormGroup>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save Name
             </UButton>
             <div v-if="nameError" style="color: red; font-weight: bold;">{{ nameError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -49,10 +50,11 @@
           </UFormGroup>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save Email
             </UButton>
             <div v-if="emailError" style="color: red; font-weight: bold;">{{ emailError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -80,10 +82,11 @@
           </UFormGroup>
 
           <template #footer>
-            <UButton type="submit" color="black">
+            <UButton type="submit" name="form-submit-button">
               Save password
             </UButton>
             <div v-if="passwordError" style="color: red; font-weight: bold;">{{ passwordError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -115,6 +118,7 @@
               Delete Account
             </UButton>
             <div v-if="deletionError" style="color: red; font-weight: bold;">{{ deletionError }}</div>
+            
           </template>
         </UCard>
       </template>
@@ -125,7 +129,10 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { consola } from "consola"
+import { consola } from "consola";
+import * as Sentry from "@sentry/nuxt";
+import { useErrorLogger } from '~/composables/useErrorLogger';
+const { reportError }= useErrorLogger();
 
 definePageMeta({
   layout: 'default',
@@ -184,9 +191,8 @@ async function onSubmitName() {
   } catch (error: any) {
     // Set the error message for the "Name" tab only
     nameError.value = error.statusMessage;
+    reportError(error,{ section : 'settings/Name'})
   }
-
-  
 }
 
 async function onSubmitEmail() {
@@ -212,6 +218,7 @@ async function onSubmitEmail() {
 
   } catch (error: any) {
     emailError.value = error.statusMessage;
+    reportError(error, {section: 'settings/email'});
   }
 }
 
@@ -237,6 +244,7 @@ async function onSubmitPassword() {
     
   } catch (error: any) {
     passwordError.value = error.statusMessage;
+    reportError(error, {section: 'settings/password'});
   }
 }
 
@@ -259,12 +267,13 @@ async function onDeleteAccount() {
 
   } catch (error: any) {
     deletionError.value = error.statusMessage;
+    reportError(error, {section: 'settings/delete'});
   }
 }
 
 </script>
 
-<style>
+<style scoped>
 [role=tab] {
   visibility: visible;
 }
@@ -277,4 +286,15 @@ async function onDeleteAccount() {
 *, ::before, ::after {
   box-sizing:inherit;
 }
+
+button[name="form-submit-button"] {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+button[name="form-submit-button"]:hover {
+  color: black;
+}
+
+
 </style>
