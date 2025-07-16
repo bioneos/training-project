@@ -45,8 +45,6 @@ WORKDIR /app
 COPY --chown=${UNAME}:${UGROUP} package.json package-lock.json* ./
 RUN NUXT_TELEMETRY_DISABLED=1 npm ci && npm cache clean --force
 
-RUN mkdir -p /app/.output && chown -R ${UNAME}:${UGROUP} /app/.output
-
 # Copy in as node user, so permissions match what we need
 WORKDIR /app/src
 COPY --chown=${UNAME}:${UGROUP} . .
