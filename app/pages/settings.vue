@@ -3,7 +3,7 @@
     <UTabs :items="items" class="w-full">
       <!-- Name settings form -->
       <template #Name="{ item }">
-        <UCard @submit.prevent="onSubmitName">
+        <UCard>
           <template #header>
             <p class="text-base font-semibold leading- text-gray-900 dark:text-white">
               {{ item.label }}
@@ -18,7 +18,7 @@
           </UFormField>
 
           <template #footer>
-            <UButton type="submit" name="form-submit-button">
+            <UButton type="submit" name="form-submit-button" @click="onSubmitName">
               Save Name
             </UButton>
             <div v-if="nameError" style="color: red; font-weight: bold;">{{ nameError }}</div>
@@ -29,7 +29,7 @@
 
       <!-- Email settings form -->
       <template #Email="{ item }">
-        <UCard @submit.prevent="onSubmitEmail">
+        <UCard>
           <template #header>
             <p class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
               {{ item.label }}
@@ -50,7 +50,7 @@
           </UFormField>
 
           <template #footer>
-            <UButton type="submit" name="form-submit-button">
+            <UButton type="submit" name="form-submit-button" @click="onSubmitEmail">
               Save Email
             </UButton>
             <div v-if="emailError" style="color: red; font-weight: bold;">{{ emailError }}</div>
@@ -61,7 +61,7 @@
 
       <!-- Password settings form -->
       <template #password="{ item }">
-        <UCard @submit.prevent="onSubmitPassword">
+        <UCard>
           <template #header>
             <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
               {{ item.label }}
@@ -82,7 +82,7 @@
           </UFormField>
 
           <template #footer>
-            <UButton type="submit" name="form-submit-button">
+            <UButton type="submit" name="form-submit-button" @click="onSubmitPassword">
               Save password
             </UButton>
             <div v-if="passwordError" style="color: red; font-weight: bold;">{{ passwordError }}</div>
@@ -93,7 +93,7 @@
 
       <!-- Deletion settings form -->
       <template #Deletion="{ item }">
-        <UCard @submit.prevent="onDeleteAccount">
+        <UCard>
           <template #header>
             <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
               {{ item.label }}
@@ -114,7 +114,7 @@
           </UFormField>
 
           <template #footer>
-            <UButton type="submit" color="red">
+            <UButton type="submit" color="error" @click="onDeleteAccount">
               Delete Account
             </UButton>
             <div v-if="deletionError" style="color: red; font-weight: bold;">{{ deletionError }}</div>
@@ -131,7 +131,7 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { consola } from "consola";
 import * as Sentry from "@sentry/nuxt";
-import { useErrorLogger } from '~~/app/composables/useErrorLogger';
+import { useErrorLogger } from './../composables/useErrorLogger';
 const { reportError }= useErrorLogger();
 
 definePageMeta({
@@ -262,9 +262,10 @@ async function onDeleteAccount() {
     // Clear the error message for the "Delete Account" tab
     deletionError.value = null;
 
-    // Redirect to login page
-    navigateTo('/login');
-
+    if (response !== null) {
+      // Redirect to login page
+      navigateTo('/login');
+    } 
   } catch (error: any) {
     deletionError.value = error.statusMessage;
     reportError(error, {section: 'settings/delete'});
