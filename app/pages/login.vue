@@ -1,42 +1,46 @@
 <template>
   <form @submit.prevent="login">
-    <div class="w-full flex flex-col gap-y-4">
-      <UCard :ui="{ body: { base: 'grid grid-cols-3' } }">
-        <div class="space-y-4">
-          <UFormField label="Email" required>
-            <UInput v-model="email" type="email" placeholder="you@example.com" icon="i-heroicons-envelope" />
-          </UFormField>
+    <div class="w-full">
+      <UCard>
+        <div class="grid grid-cols-3">
+          <div class="space-y-4 col-span-1">
+            <UFormField label="Email" required>
+              <UInput v-model="email" type="email" placeholder="you@example.com" icon="i-heroicons-envelope" />
+            </UFormField>
 
-          <UFormField label="Password" required>
-            <UInput v-model="password" type="password" icon="i-heroicons-lock-closed" />
-          </UFormField>
+            <UFormField label="Password" required>
+              <UInput v-model="password" type="password" icon="i-heroicons-lock-closed" />
+            </UFormField>
 
-          <UButton variant="soft" type="submit">Login</UButton>
+            <UButton variant="soft" type="submit">Login</UButton>
             <div v-if="loginError" style="color: red; font-weight: bold;">{{ loginError }}</div>
+          </div>
+
+          <USeparator label="OR" orientation="vertical" class="h-48 col-span-1"/>
+
+          <div class="space-y-4 flex flex-col justify-center pr-40 text-primary w-full col-span-1">
+            <UAlert
+            class="w-full"
+              icon="i-heroicons-command-line"
+              description="These functions are temporarily unavailable."
+              title="We're sorry!"
+            />
+            <ULink
+              to="https://github.com/login"
+              active-class="text-primary"
+              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+              <UButton disabled variant="outline" color="black" label="Login with GitHub" icon="i-logos-github-icon" block />
+            </ULink>
+
+            <ULink
+              to="https://accounts.google.com"
+              active-class="text-primary"
+              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+              <UButton disabled variant="outline" color="black" label="Login with Google" icon="i-simple-icons-google" block />
+            </ULink>
+          </div>
         </div>
-
-        <USeparator label="OR" orientation="vertical" />
-
-        <div class="space-y-4 flex flex-col justify-center pr-40 text-primary">
-          <UAlert
-            icon="i-heroicons-command-line"
-            description="These functions are temporarily unavailable."
-            title="We're sorry!"
-          />
-          <ULink
-            to="https://github.com/login"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
-            <UButton disabled variant="outline" color="black" label="Login with GitHub" icon="i-logos-github-icon" block />
-          </ULink>
-
-          <ULink
-            to="https://accounts.google.com"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
-            <UButton disabled variant="outline" color="black" label="Login with Google" icon="i-simple-icons-google" block />
-          </ULink>
-        </div>
+        
       </UCard>
     </div>
   </form>
