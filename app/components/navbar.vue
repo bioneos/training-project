@@ -18,7 +18,7 @@
       </li>
     </ul>
   </nav>
-  <UDivider :avatar="{ src: '/img/logo-sq.png' }" />
+  <USeparator :avatar="{ src: '/img/logo-sq.png' }" />
 </template>
 
 <script setup>

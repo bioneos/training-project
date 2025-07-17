@@ -1,4 +1,5 @@
-import { checkJwtToken, createJwtToken } from "../../../jwt";
+import { defineEventHandler, readBody } from 'h3';
+import { checkJwtToken, createJwtToken } from "../../utils/jwt";
 import prisma from '../../../database/db';
 
 // Define the event handler for the POST request

@@ -39,16 +39,14 @@ RUN useradd -ms /bin/bash -u ${UID} -g ${UGROUP} ${UNAME}
 USER ${UNAME}
 
 # Create app directory
-WORKDIR /app
+WORKDIR /node_app
 
 # Install app dependencies
 COPY --chown=${UNAME}:${UGROUP} package.json package-lock.json* ./
 RUN NUXT_TELEMETRY_DISABLED=1 npm ci && npm cache clean --force
 
-RUN mkdir -p /app/.output && chown -R ${UNAME}:${UGROUP} /app/.output
-
 # Copy in as node user, so permissions match what we need
-WORKDIR /app/src
+WORKDIR /node_app/app
 COPY --chown=${UNAME}:${UGROUP} . .
 
 

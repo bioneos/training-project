@@ -13,26 +13,5 @@
   </template>
   
 <script setup>
-  import { ref, onMounted, watch } from 'vue';
-  import { useRoute } from 'vue-router';
   import Navbar from '../components/navbar.vue';
-  </script>
-
-<style>
-
-header { 
-  padding: 15px;
-}
-
-ul {
-  padding: 20px;
-}
-
-li {
-  padding: 1px;
-}
-
-button {
-  align-self: center;
-}
-</style>
+</script>

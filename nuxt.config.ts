@@ -1,17 +1,24 @@
+import tailwindcss from '@tailwindcss/vite';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   telemetry: false,
   devtools: { enabled: true },
   modules: ["@nuxt/ui", "@sentry/nuxt/module"],
+  css: ['~/assets/css/main.css'],
 
   devServer: {
     port: Number(process.env.APP_PORT),
   },
 
-  srcDir: "src/",
-
   typescript: {
     strict: false,
+  },
+
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
   },
 
   runtimeConfig: {

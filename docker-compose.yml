@@ -6,21 +6,24 @@ services:
     ports:
       - "127.0.0.1:${APP_PORT}:${APP_PORT}"
     volumes:
-      - ./src:/app/src
-      - ./prisma:/app/prisma
-      - ./docker/entrypoint.sh:/app/docker/entrypoint.sh
-      - ./nuxt.config.ts:/app/nuxt.config.ts
-      - ./tsconfig.json:/app/tsconfig.json
-      - ./sentry.client.config.ts:/app/sentry.client.config.ts
-      - ./sentry.server.config.ts:/app/sentry.server.config.ts
-      - ./package.json:/app/package.json
-      - ./package-lock.json:/app/package-lock.json
+      - ./app:/node_app/app
+      - ./prisma:/node_app/prisma
+      - ./server:/node_app/server
+      - ./public:/node_app/public
+      - ./database:/node_app/database
+      - ./docker/entrypoint.sh:/node_app/docker/entrypoint.sh
+      - ./nuxt.config.ts:/node_app/nuxt.config.ts
+      - ./tsconfig.json:/node_app/tsconfig.json
+      - ./sentry.client.config.ts:/node_app/sentry.client.config.ts
+      - ./sentry.server.config.ts:/node_app/sentry.server.config.ts
+      - ./package.json:/node_app/package.json
+      - ./package-lock.json:/node_app/package-lock.json
       - type: volume
         source: node-modules
-        target: /app/node_modules
+        target: /node_app/node_modules
       - type: volume
         source: nuxt
-        target: /app/.nuxt
+        target: /node_app/.nuxt
     depends_on:
       db:
         condition: service_healthy
@@ -28,7 +31,7 @@ services:
       PRISMA_DATABASE_CONNECTION_URL: "mysql://root:${MYSQL_ROOT_PASSWORD}@db:3306/${MYSQL_DATABASE}"
       APP_PORT: ${APP_PORT}
       DB_PORT: ${DB_PORT}
-    working_dir: /app
+    working_dir: /node_app
     env_file:
       - .env
     command: >

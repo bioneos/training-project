@@ -1,6 +1,6 @@
 import prisma from '../../../database/db';
 import bcrypt from 'bcrypt';
-import { defineEventHandler, readBody } from 'h3';
+import { defineEventHandler, readBody, createError } from 'h3';
 
 // Define the User interface
 export interface User {
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
       success: false
     }
   } else {
-    
+
     // Successfully login
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
