@@ -13,10 +13,8 @@
   </template>
   
 <script setup>
-  import { ref, onMounted, watch } from 'vue';
-  import { useRoute } from 'vue-router';
   import Navbar from '../components/navbar.vue';
-  </script>
+</script>
 
 <style>
 

@@ -8,8 +8,6 @@ export default defineNuxtConfig({
     port: Number(process.env.APP_PORT),
   },
 
-  srcDir: "src/",
-
   typescript: {
     strict: false,
   },

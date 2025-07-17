@@ -47,7 +47,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import * as Sentry from "@sentry/nuxt";
-import { useErrorLogger } from '~/composables/useErrorLogger';
+import { useErrorLogger } from '~~/app/composables/useErrorLogger';
 const { reportError}= useErrorLogger();
 
 definePageMeta({
