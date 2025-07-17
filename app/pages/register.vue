@@ -3,24 +3,24 @@
     <h1 class="font-default pb-2">Please enter...</h1>
     <form @submit.prevent="register"> <!--Register form-->
       <div>
-        <UFormGroup label="Name" required class="pb-1" >
+        <UFormField label="Name" required class="pb-1" >
           <UInput v-model="name" type="text" icon="i-heroicons-lock-closed"/>
-        </UFormGroup>
+        </UFormField>
       </div>
       <div>
-        <UFormGroup label="Email" required class="pb-1">
+        <UFormField label="Email" required class="pb-1">
           <UInput v-model="email" type="email" icon="i-heroicons-envelope" placeholder="you@example.com" />
-        </UFormGroup>
+        </UFormField>
       </div>
       <div>
-        <UFormGroup label="Password" name="password" required class="pb-1"> 
+        <UFormField label="Password" name="password" required class="pb-1"> 
           <UInput v-model="password" type="password" icon="i-heroicons-lock-closed" />
-        </UFormGroup>
+        </UFormField>
       </div>
       <div>
-        <UFormGroup label="Confirm Password" name="confirmPassword" required>
+        <UFormField label="Confirm Password" name="confirmPassword" required>
           <UInput v-model="confirmPassword" type="password" icon="i-heroicons-lock-closed" />
-        </UFormGroup>
+        </UFormField>
       </div>
       <UButton variant="soft" type="submit">Register</UButton>
     </form>
@@ -32,9 +32,9 @@
 <script setup lang="ts">
 
 definePageMeta({
-        layout: 'public',
-        middleware: 'no-auth-required'
-    })
+    layout: 'public',
+    middleware: 'no-auth-required'
+})
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

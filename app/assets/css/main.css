@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+header {
+  padding: 15px;
+}
+
+ul {
+  padding: 20px;
+}
+
+li {
+  padding: 1px;
+}
+
+button {
+  align-self: center;
+}

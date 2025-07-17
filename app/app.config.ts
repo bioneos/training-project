@@ -1,3 +1,9 @@
 export default defineAppConfig({
-  title: 'TempoLens'
+  title: 'TempoLens',
+  ui: {
+    colors: {
+      primary: 'green',
+      neutral: 'slate'
+    }
+  }
 })

@@ -13,9 +13,9 @@
             </p>
           </template>
 
-          <UFormGroup label="Display Name" name="newName" class="mb-3">
+          <UFormField label="Display Name" name="newName" class="mb-3">
             <UInput v-model="nameForm.newName" :placeholder="name" required/>
-          </UFormGroup>
+          </UFormField>
 
           <template #footer>
             <UButton type="submit" name="form-submit-button">
@@ -39,15 +39,15 @@
             </p>
           </template>
 
-          <UFormGroup label="Current Email" name="currentEmail" required class="mb-3">
+          <UFormField label="Current Email" name="currentEmail" required class="mb-3">
             <UInput v-model="emailForm.currentEmail" type="email" required />
-          </UFormGroup>
-          <UFormGroup label="New Email" name="newEmail" required class="mb-3">
+          </UFormField>
+          <UFormField label="New Email" name="newEmail" required class="mb-3">
             <UInput v-model="emailForm.newEmail" type="email" required />
-          </UFormGroup>
-          <UFormGroup label="Confirm New Email" name="confirmNewEmail" required>
+          </UFormField>
+          <UFormField label="Confirm New Email" name="confirmNewEmail" required>
             <UInput v-model="emailForm.confirmedNewEmail" type="email" required />
-          </UFormGroup>
+          </UFormField>
 
           <template #footer>
             <UButton type="submit" name="form-submit-button">
@@ -71,15 +71,15 @@
             </p>
           </template>
 
-          <UFormGroup label="Current Password" name="currentPassword" required class="mb-3">
+          <UFormField label="Current Password" name="currentPassword" required class="mb-3">
             <UInput v-model="passwordForm.currentPassword" type="password" required />
-          </UFormGroup>
-          <UFormGroup label="New Password" name="newPassword" required class="mb-3">
+          </UFormField>
+          <UFormField label="New Password" name="newPassword" required class="mb-3">
             <UInput v-model="passwordForm.newPassword" type="password" required />
-          </UFormGroup>
-          <UFormGroup label="Confirm New Password" name="confirmNewPassword" required>
+          </UFormField>
+          <UFormField label="Confirm New Password" name="confirmNewPassword" required>
             <UInput v-model="passwordForm.confirmedNewPassword" type="password" required />
-          </UFormGroup>
+          </UFormField>
 
           <template #footer>
             <UButton type="submit" name="form-submit-button">
@@ -103,15 +103,15 @@
             </p>
           </template>
 
-          <UFormGroup label="Email" name="Email" required class="mb-3">
+          <UFormField label="Email" name="Email" required class="mb-3">
             <UInput v-model="deletionForm.email" type="email" required />
-          </UFormGroup>
-          <UFormGroup label="Current Password" name="password" required class="mb-3">
+          </UFormField>
+          <UFormField label="Current Password" name="password" required class="mb-3">
             <UInput v-model="deletionForm.password" type="password" required />
-          </UFormGroup>
-          <UFormGroup label="Confirm Password" name="confirmPassword" required>
+          </UFormField>
+          <UFormField label="Confirm Password" name="confirmPassword" required>
             <UInput v-model="deletionForm.confirmedPassword" type="password" required />
-          </UFormGroup>
+          </UFormField>
 
           <template #footer>
             <UButton type="submit" color="red">

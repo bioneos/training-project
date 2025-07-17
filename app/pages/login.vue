@@ -3,19 +3,19 @@
     <div class="w-full flex flex-col gap-y-4">
       <UCard :ui="{ body: { base: 'grid grid-cols-3' } }">
         <div class="space-y-4">
-          <UFormGroup label="Email" required>
+          <UFormField label="Email" required>
             <UInput v-model="email" type="email" placeholder="you@example.com" icon="i-heroicons-envelope" />
-          </UFormGroup>
+          </UFormField>
 
-          <UFormGroup label="Password" required>
+          <UFormField label="Password" required>
             <UInput v-model="password" type="password" icon="i-heroicons-lock-closed" />
-          </UFormGroup>
+          </UFormField>
 
           <UButton variant="soft" type="submit">Login</UButton>
             <div v-if="loginError" style="color: red; font-weight: bold;">{{ loginError }}</div>
         </div>
 
-        <UDivider label="OR" orientation="vertical" />
+        <USeparator label="OR" orientation="vertical" />
 
         <div class="space-y-4 flex flex-col justify-center pr-40 text-primary">
           <UAlert
