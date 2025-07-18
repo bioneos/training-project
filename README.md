@@ -15,12 +15,12 @@ We were tasked with designing and creating a development skeleton for future Bio
 - Use as guide for future interns
 
 ### Technologies used
-- Nuxt 3.12
-- Vue.js (either 2.7 or 3)
+- Nuxt 4
+- Vue.js 3
 - MySQL
 - Docker
 - Bcrypt
-- Prisma 5.15.0
+- Prisma 6.12.0
 
 ## Getting Started
 
